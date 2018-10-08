@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head><title>Experiment 2</title></head>
+	<body>
+		<h1>Rock, Paper, Scissors in PHP</h1>
+        <select id="userSelect">
+            <option value="rock">Rock</option>
+            <option value="paper">Paper</option>
+            <option value="scissors"> >Scissors</option>
+        </select>
+        <button onclick="play()">Click me!</button>
+		<p><span id="result"></span></p>
+    </body>
+    <script>
+        function play()
+        {
+            var userChoice = document.getElementById('userSelect');
+            var url = "experiment4-ajax.php?choice=" + userChoice;
+            fetch(url)
+                .then(function(response) 
+                {
+                    document.getElementById('result').innerHTML = response;
+                });
+        }
+    </script>
+</html>
