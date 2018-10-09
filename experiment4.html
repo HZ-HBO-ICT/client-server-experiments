@@ -6,7 +6,7 @@
         <select id="userSelect">
             <option value="rock">Rock</option>
             <option value="paper">Paper</option>
-            <option value="scissors"> >Scissors</option>
+            <option value="scissors">Scissors</option>
         </select>
         <button onclick="play()">Click me!</button>
 		<p><span id="result"></span></p>
@@ -14,13 +14,22 @@
     <script>
         function play()
         {
-            var userChoice = document.getElementById('userSelect');
+            var userChoice = document.getElementById( 'userSelect' ).value;
             var url = "experiment4-ajax.php?choice=" + userChoice;
-            fetch(url)
-                .then(function(response) 
-                {
-                    document.getElementById('result').innerHTML = response;
-                });
+            // create the XMLHttpRequest object that will handle the AJAX call
+            var xmlHttpRequest = new XMLHttpRequest();
+            // Tell the object to call the responseReceived function when responce is recieved
+            xmlHttpRequest.addEventListener( 'load', responseReceived );
+            xmlHttpRequest.open( "get", url, true );
+            // Send the HTTP request to the server
+            xmlHttpRequest.send();
+        }
+
+        function responseReceived( evt )
+        {
+            // 'this' refers to the XMLHttpRequest object that calls this function.
+            var result = this.responseText;
+            document.getElementById( 'result' ).innerHTML = result;
         }
     </script>
 </html>

@@ -8,7 +8,7 @@
 		$computerChoice = getComputerChoice();
 
         //Now, let's play, and return the result  text!
-		$returnText = "The server chose $computerChoice. ";
+		$returnText = "You chose $userChoice. The server chose $computerChoice. ";
 		$result = compare($userChoice, $computerChoice);
 		if($result == 0) {
 			$returnText .= 'The result is a Tie!';
